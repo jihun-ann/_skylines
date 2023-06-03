@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.springboot.DAO.ReservationDAO">
+	<select id="selectAll" resultType="com.project.springboot.VO.ReservationVO">
+		select * from Reservation where ReservationNum = 1
+	</select>
+
+
+	<insert id="insertreservation">
+	insert into reservation ( userId, flightScheduleNum, fromPlatform,
+	toPlatform,agedPerson, totalPrice, flightTicket, dates, time) 
+	
+	values (#{userId},#{flightScheduleNum},#{fromPlatform},
+	#{toPlatform},1,111200,#{flightTicket},#{dates},#{time}) 
+	</insert>
+	
+	<delete id="delete"> 
+        delete from reservation where reservationNum = #{reservationNum} 
+    </delete>    
+	
+	
+</mapper>

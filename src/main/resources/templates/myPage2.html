@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{home.html}">
+<head>
+<meta charset="utf-8">
+<style>
+body {
+	font-size: 13px !important;
+	font-family: "Nanum Gothic", Arial, sans-serif;
+	vertical-align: middle;
+	line-height: 20px;
+	color: #666;
+/* 	margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: initial !important;  */
+}
+
+#container #contents {
+	padding: 65px 0 100px 270px;
+	min-height: 850px;
+}
+
+#container.noneSnb #contents {
+	padding: 0;
+}
+
+#container.noneSnb #contents .mypage {
+	padding: 65px 0 100px 0;
+	margin: 0 auto;
+	width: 1000px;
+}
+
+.ctit {
+	font-weight: 700;
+	font-size: 38px;
+	line-height: 1em;
+	color: #333;
+}
+
+/* a, abbr, acronym, address, applet, article, aside, audio, b, big,
+	blockquote, body, canvas, caption, center, cite, code, dd, del, details,
+	dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form,
+	h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, input,
+	ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p,
+	pre, q, ruby, s, samp, section, small, span, strike, strong, sub,
+	summary, sup, table, tbody, td, textarea, tfoot, th, thead, time, tr,
+	tt, u, ul, var, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+} */
+
+#wrap .mgt40, .mgt40 {
+	margin-top: 40px;
+}
+
+#wrap .mgt20, .mgt20 {
+	margin-top: 20px;
+}
+
+.ttit {
+	color: #005fa7;
+	font-size: 20px;
+}
+
+.fl {
+	float: left !important;
+}
+
+.mypage {
+	margin: 0 135px 0 135px;
+}
+
+.mypage .mypageUserInfoBox {
+	position: relative;
+	width: 344px;
+	height: 163px;
+	padding: 20px;
+	/*     margin-right: 50px; */
+	border: 1px solid #ddd;
+	float: left;
+	background: #f3f7f9
+		url(//story.airbusan.com/content/assets/images/member/bg_mypage_stamp01.png)
+		0 0 repeat;
+}
+
+.mypage .mypageUserInfoBox .ribbonBox01 {
+	position: absolute;
+	top: 0;
+	left: 20px;
+	width: 82px;
+	height: 52px;
+	padding: 25px 4px 0 0;
+	background:
+		url(//story.airbusan.com/content/assets/images/member/bg_ribbon01.png)
+		0 0 no-repeat;
+	color: #fff;
+	font-size: 12px;
+	line-height: 14px;
+	font-weight: 700;
+	text-align: center;
+}
+
+.mypage .mypageUserInfoBox .txt {
+	min-height: 50px;
+	margin-top: 55px;
+	font-size: 15px;
+	line-height: 24px;
+	text-align: center;
+	font-weight: 700;
+}
+
+.ssBtn * {
+	display: inline-block;
+	min-width: 38px;
+	height: 20px;
+	padding: 0 10px 1px 7px;
+	color: #666;
+	font-weight: 400;
+	font-size: 11px;
+	text-align: center;
+	background-position: 100% -532px;
+	line-height: 20px;
+	vertical-align: top;
+}
+
+.oh {
+	overflow: hidden !important;
+}
+
+.posr {
+	position: relative !important;
+}
+
+.tblRowData01 tr:first-child td, .tblRowData01 tr:first-child th {
+	border-top: none;
+}
+
+.tblRowData01 th {
+	padding: 15px 0 15px 20px;
+	text-align: left;
+	vertical-align: top;
+	background: #fafafc;
+	border-top: 1px solid #efefef;
+	color: #333;
+}
+
+.tblRowData01 td {
+	padding: 10px 0 10px 20px;
+	border-top: 1px solid #efefef;
+}
+
+#wrap .mgt50, .mgt50 {
+	margin-top: 50px;
+}
+
+.mypage .scheduleBox {
+	position: relative;
+}
+
+.tblColData01 {
+	overflow: hidden;
+	border-top: 2px solid #616e7b;
+	border-bottom: 1px solid #b0bbc4;
+}
+
+.tblColData01 thead th {
+	padding: 10px 0;
+	background-color: #fafafc;
+	color: #333;
+	border-bottom: 1px solid #b0bbc4;
+}
+
+.ticket {
+ width: 800px;
+ margin-top: 30px;
+}
+
+.ticketHead{
+ background-color : #005fa7;
+ height: 50px;
+ border-radius: 15px 15px 0px 0px;
+}
+
+.ticketContent{
+ background-color : #d5d6da;
+ height: 150px;
+ border-radius: 0px 0px 15px 15px;
+}
+
+#boarding {
+ font-size : 35px; 
+ color: white;
+ text-align: center;
+ letter-spacing: -1px;
+ margin-top: 13px;
+}
+
+#success{
+ text-align: center;
+ margin-top: 30px;
+}
+
+#flightnum {
+ color: white;
+ margin-top: 15px;
+ font-size: 15px;
+ letter-spacing: -1px;
+}
+
+#passentgernum {
+ color: white;
+ margin-top: 15px;
+ font-size: 15px;
+ letter-spacing: -1px;
+}
+.arrive{
+ color: gray;
+ text-align: center;
+ margin-top: 40px;
+}
+
+#arrivecity {
+ color: #005fa7;
+ font-size: 30px;
+}
+
+#departcity {
+ color: #005fa7;
+ font-size: 30px;
+}
+
+#qr { 
+ width: 80px;
+ height: 80px;
+ margin-top: 30px;
+}
+
+tbody tr td {
+ padding: 0 0 15px 25px;
+ vertical-align: middle;
+}
+</style>
+</head>
+<body>
+	<div layout:fragment="content">
+		<!-- 마이페이지 내역 -->
+		<div id="container" class="container01">
+			<div id="contents">
+				<div class="mypage">
+					<div class="ctitArea">
+						<h3 class="ctit">마이페이지</h3>
+					</div>
+					<div class="mgt40">※ [개인정보 수정] 클릭 후, 선택정보에서 선호지역을 등록하시면 해당 지역
+						프로모션 정보를 손쉽게 받으실 수 있습니다.</div>
+
+					<div class="mgt40">
+						<div class="fl">
+							<h4 class="ttit">회원 타입</h4>
+							<div class="mypageUserInfoBox mgt20">
+								<div class="ribbonBox01">개인</div>
+								<div class="info">
+									<p class="txt">
+										[[${user.userLastName}]]님께서는<br>에어중앙 <em class="point01">개인 회원</em>이십니다.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="oh posr">
+							<div class="posR">
+								<h4 class="ttit">나의 정보</h4>
+								<span class="btn ssBtn txtRT"><a href="/userInformationEdit"
+									onclick="openCheckPasswordPopup();">개인정보 수정</a></span>
+							</div>
+							<div class="tblRowData01 mgt20">
+								<table th:object="${user}">
+									<colgroup>
+										<col style="width: 27%">
+										<col>
+									</colgroup>
+									<tbody>
+										
+										<tr>
+											<th scope="row">회원명(last Name)</th>
+											<td>[[*{userLastName}]]</td>
+										</tr>
+										<tr>
+											<th scope="row">로그인 방법</th>
+											<td>[[*{signLocation}]]</td>
+										</tr>
+										<tr>
+											<th scope="row">이메일</th>
+											<td>[[*{userEmail}]]</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="scheduleBox mgt50">
+						<h4 class="ttit">예약내역(탑승기간 1개월 이내, 최대 5건)</h4>
+						<!-- 결제 완료 표시 -->
+	
+	<div class="ticket" th:each=" re :${re}">
+	   <div class="ticketHead">
+	    <div class="row">
+	      <div class="col-8" id="boarding">
+	        Boarding pass CA AIR
+	      </div>
+	      <div class="col-2" id="flightnum" th:text="|항공편: ${re.flightTicket}|">
+	       
+	      </div>
+	      <div class="col-2" id="passentgernum" th:text="|인원: ${re.agedPerson}|">
+	       
+	      </div>
+	    </div>
+	   </div>
+	   <div class="ticketContent">
+	    <div class="row">
+	     <div class="col-4 arrive">
+	        출발 도시 
+	        <span id ="arrivecity" th:text="|${re.fromPlatform}|">
+	          
+	        </span>
+	        <br>도착 도시
+	        <span id ="departcity" th:text="|${re.toPlatform}|">
+	          
+	        </span>
+	     </div>
+	     <div class="col-6">
+	      <table>
+	       <tr style="color: gray; letter-spacing:-1px;">
+	         <td>Boarding</td>
+	         <td>Price</td>
+	         <td>Date</td>
+	       </tr>
+	       <tr>
+	         <td th:text="${re.time}">13:50</td>
+	         <td th:text="${re.totalPrice}"></td>
+	         <td th:text="${re.dates}">2023-02-24</td>
+	       <tr style="color: gray; letter-spacing:-1px;">
+	         <td>Passenger</td>
+	         <td>Seat</td>
+	       </tr>
+	       <tr>
+	         <td>[[${user.userLastName}]]</td>
+	         <td>B1</td>
+	       </tr>
+	      </table>
+	     </div>
+	     <div class="col-2">
+	       <img src="images/qr코드.png" id="qr">
+	     </div>
+	    </div>
+	   </div>
+	</div>
+	
+						
+						<!-- <a href="/web/individual/reserve/pnr" class="more"><img
+						src="//story.airbusan.com/content/assets/images/common/btn_more01.gif"
+						alt="항공권 예약조회 바로가기"></a> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

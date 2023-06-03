@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 	
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.springboot.DAO.FlightScheduleDAO">
+	
+	<select id="search" resultType="com.project.springboot.VO.FlightScheduleVO">
+		select * from FlightSchedule
+		 where fromPlatform = #{fs_vo.fromPlatform} and toPlatform = #{fs_vo.toPlatform}
+	</select>
+	
+	<select id="searchnum" resultType="com.project.springboot.VO.FlightScheduleVO">
+	    select * from FlightSchedule 
+	     where flightscheduleNum = (select flightscheduleNum from semires where flightnum = (select max(flightnum) from semires))
+	</select>
+</mapper>
