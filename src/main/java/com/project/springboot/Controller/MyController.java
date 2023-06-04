@@ -2,6 +2,7 @@ package com.project.springboot.Controller;
 
 import java.util.List;
 
+import com.project.springboot.VO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +19,6 @@ import com.project.springboot.DAO.ReservationDAO;
 import com.project.springboot.DAO.SemiResDAO;
 import com.project.springboot.DAO.UserDAO;
 import com.project.springboot.Service.UserServiceImp;
-import com.project.springboot.VO.BbsVO;
-import com.project.springboot.VO.FlightScheduleVO;
-import com.project.springboot.VO.ReservationVO;
-import com.project.springboot.VO.SemiResVO;
-import com.project.springboot.VO.UserVO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -309,6 +305,8 @@ public class MyController {
 	   String userSession = String.valueOf(session.getAttribute("user"));
 		if(userSession != "null") {
 			System.out.println(userSession + "허허");
+			List<PlatformVO> platformList = pfMapper.selectAll();
+			mo.addAttribute("pfLst",platformList);
 			return "/booking";
 		}else {
 			mo.addAttribute("alert", "로그인 하세요");

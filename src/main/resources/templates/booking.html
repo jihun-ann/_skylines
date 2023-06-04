@@ -512,29 +512,8 @@ li a span.stamp {
 		resultElement.innerText = number;
 	}
 
-	$(function() {
 
-		$('input[name="datefilter"]').daterangepicker({
-			autoUpdateInput : false,
-			locale : {
-				cancelLabel : 'Clear'
-			}
-		});
 
-		$('input[name="datefilter"]').on(
-				'apply.daterangepicker',
-				function(ev, picker) {
-					$(this).val(
-							picker.startDate.format('MM/DD/YYYY') + ' - '
-									+ picker.endDate.format('MM/DD/YYYY'));
-				});
-
-		$('input[name="datefilter"]').on('cancel.daterangepicker',
-				function(ev, picker) {
-					$(this).val('');
-				});
-
-	});
 
  $(function(){
    $('#buttonSearchAvail').click(function(){
@@ -543,11 +522,6 @@ li a span.stamp {
    });
  });
 
-$(document).ready(function(){
-	
- 
-  
-});
 
 $(function() {
 
@@ -575,26 +549,35 @@ $(function() {
     $.ajax({
 
         type : "post",
-
-        
         url : "/rs_search",
-             
-        data : 
-
+        data :
                JSON.stringify(obj)
-
         ,
         contentType: "application/json; charset=utf-8",
 
          success : function(data) {
+
+					let from = platfromS(data.fromPlatform);
+					let to = platfromS(data.toPlatform);
+
+          function platfromS(num){
+						switch (num){
+              case "1" : return "김포(GMP)"; break;
+              case "2" : return "울산(USN)"; break;
+              case "3" : return "제주(CJU)"; break;
+              case "4" : return "사천(HIN)"; break;
+              case "5" : return "무안(MWX)"; break;
+            }
+          }
+
         	 ddd = data.flightscheduleNum;
             // result는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
         	console.log(data);	
             $('.posR').html(
             	`<h4 class="titFlightTo ">
-					1구간 <span> <label class="depCityName">${data.fromPlatform}</label> <img
+					1구간 <span> <label class="depCityName">${from}</label> <img
 						src="//story.airbusan.com/content/assets/images/reservation/bg_to_from.png"
-						alt="에서"> <label class="arrCityName">${data.toPlatform}<label
+						alt="에서"> <label class="arrCityName">${to}<label
 						class="depDate_MMDDddd"> &nbsp; ${data.dates}</label>
 					</span> <span class="currency">통화 : KRW</span>
 				</h4>`
@@ -603,7 +586,7 @@ $(function() {
             
             $('.nativeSummaryItinerary').html(
             		`<p class="period mgb10">
-					1구간 : ${data.fromPlatform} - ${data.toPlatform}<br> <span> ${data.date}</span>
+					1구간 : ${from} - ${to}<br> <span> ${data.date}</span>
 				    </p>`	
             
             );
@@ -724,11 +707,11 @@ $(function() {
 															style="width: 150px;">
 																<option value="" data-ctlval1="KR1">---- 한국
 																	----</option>
-																<option value="김포(GMP)">김포(GMP)</option>
-																<option value="울산(USN)">울산(USN))</option>
-																<option value="제주(CJU)">제주(CJU)</option>
-																<option value="사천(HIN)">사천(HIN)</option>
-																<option value="무안(MWX)">무안(MWX)</option>
+																<option value="1">김포(GMP)</option>
+																<option value="2">울산(USN)</option>
+																<option value="3">제주(CJU)</option>
+																<option value="4">사천(HIN)</option>
+																<option value="5">무안(MWX)</option>
 														</select>
 													</span></td>
 													<th class="tl">도착지</th>
@@ -738,11 +721,11 @@ $(function() {
 																style="width: 150px;">
 																	<option value="" data-ctlval1="KR1">---- 한국
 																		----</option>
-																	<option value="김포(GMP)">김포(GMP)</option>
-																	<option value="울산(USN)">울산(USN))</option>
-																	<option value="제주(CJU)">제주(CJU)</option>
-																	<option value="사천(HIN)">사천(HIN)</option>
-																	<option value="무안(MWX)">무안(MWX)</option>
+																	<option value="1">김포(GMP)</option>
+                                  <option value="2">울산(USN)</option>
+                                  <option value="3">제주(CJU)</option>
+                                  <option value="4">사천(HIN)</option>
+                                  <option value="5">무안(MWX)</option>
 															</select>
 														
 													</span></td>
@@ -759,7 +742,7 @@ $(function() {
 												</tr>
 												<tr>
 													<th class="tl">일정</th>
-													<td><input type="text" name="datefilter" value="" /></td>
+													<td><input type="text" name="datefilter" id="datefilter" value="" /></td>
 													<!--                                  <td><label> <span class="jqueryDatePickerSpan"><span
                                           class="jqueryDatePickerSpan"><input
                                              id="datePickerDeparture" type="text" class="inpPicker"
@@ -996,8 +979,8 @@ $(function() {
 				</div>
 			</div>
 		</div>
-	</div>
-</body>
+
+
 
 
 <script>
@@ -1060,29 +1043,6 @@ $(function() {
 		resultElement.innerText = number;
 	}
 
-	$(function() {
-
-		$('input[name="datefilter"]').daterangepicker({
-			autoUpdateInput : false,
-			locale : {
-				cancelLabel : 'Clear'
-			}
-		});
-
-		$('input[name="datefilter"]').on(
-				'apply.daterangepicker',
-				function(ev, picker) {
-					$(this).val(
-							picker.startDate.format('MM/DD/YYYY') + ' - '
-									+ picker.endDate.format('MM/DD/YYYY'));
-				});
-
-		$('input[name="datefilter"]').on('cancel.daterangepicker',
-				function(ev, picker) {
-					$(this).val('');
-				});
-
-	});
 
  $(function(){
 	 
@@ -1091,10 +1051,33 @@ $(function() {
       $('.reservationArea').show();
    });
  });
- 
- 
+
+		$('#datefilter').daterangepicker({
+				autoUpdateInput : false,
+				locale : {
+					cancelLabel : 'Clear'
+				}
+			});
+
+			$('input[name="datefilter"]').on(
+			'apply.daterangepicker',
+			function(ev, picker) {
+				$(this).val(
+				picker.startDate.format('YYYY-MM-DD')
+				+ ' ~ '
+				+ picker.endDate
+				.format('YYYY-MM-DD'));
+			});
+
+			$('input[name="datefilter"]').on('cancel.daterangepicker',
+			function(ev, picker) {
+				$(this).val('');
+			});
+
+
 
     
 </script>
-
+  </div>
+</body>
 </html>

@@ -5,9 +5,9 @@
     
 <mapper namespace="com.project.springboot.DAO.FlightScheduleDAO">
 	
-	<select id="search" resultType="com.project.springboot.VO.FlightScheduleVO">
+	<select id="search" parameterType="com.project.springboot.VO.FlightScheduleVO" resultType="com.project.springboot.VO.FlightScheduleVO">
 		select * from FlightSchedule
-		 where fromPlatform = #{fs_vo.fromPlatform} and toPlatform = #{fs_vo.toPlatform}
+		 where fromPlatform = #{fromPlatform} and toPlatform = #{toPlatform} and date between #{date} and #{dates}
 	</select>
 	
 	<select id="searchnum" resultType="com.project.springboot.VO.FlightScheduleVO">

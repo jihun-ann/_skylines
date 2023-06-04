@@ -10,7 +10,7 @@ import com.project.springboot.VO.FlightScheduleVO;
 @Mapper
 public interface FlightScheduleDAO {
 	List<FlightScheduleVO> search();
-	FlightScheduleVO search(@Param("fs_vo") FlightScheduleVO fs_vo);
+	FlightScheduleVO search(FlightScheduleVO fs_vo);
 	List<FlightScheduleVO> searchName();
 	FlightScheduleVO searchnum();
 }

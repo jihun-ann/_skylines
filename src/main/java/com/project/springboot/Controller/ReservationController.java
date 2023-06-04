@@ -35,8 +35,9 @@ public class ReservationController {
 	
 	@PostMapping("/rs_search")
 	public @ResponseBody FlightScheduleVO search(@RequestBody FlightScheduleVO fs_vo, Model model) {
+		fs_vo.setDates(fs_vo.getDate().substring(13,23));
+		fs_vo.setDate(fs_vo.getDate().substring(0,10));
 		System.out.println("정말 됨? "+ fs_vo);
-		
 		FlightScheduleVO res = fsMapper.search(fs_vo);
 		
 		
